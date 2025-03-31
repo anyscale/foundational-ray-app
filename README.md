@@ -1,4 +1,4 @@
-# Doggos
+# Foundational Ray Application
 
 ### Set up
 ```bash
