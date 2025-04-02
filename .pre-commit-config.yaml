@@ -18,7 +18,7 @@ repos:
         entry: bash
         args:
             - -c  # run in sequence
-            - "python notebooks/clean_cell_nums.py"
+            - "python clean_cell_nums.py"
         language: system
         pass_filenames: false
     -   id: clean
