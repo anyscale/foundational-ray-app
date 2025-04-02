@@ -29,7 +29,7 @@ In this tutorial, we'll be implementing an application that leverages the follow
     - create production batch [Jobs](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.)
     - create production online [Services](https://docs.anyscale.com/platform/services/) with our trained model
 
-<img src="/home/ray/default/images/overview.png" width=900>
+<img src="images/overview.png" width=900>
 
 
 ### Workspaces
