@@ -17,7 +17,7 @@ def clear_execution_numbers(nb_path):
 
 
 if __name__ == "__main__":
-    NOTEBOOK_DIR = Path(__file__)
+    NOTEBOOK_DIR = Path(__file__).parent
     notebook_fps = list(NOTEBOOK_DIR.glob("**/*.ipynb"))
     for fp in notebook_fps:
         clear_execution_numbers(fp)
