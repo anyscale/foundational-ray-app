@@ -8,7 +8,6 @@ import numpy as np
 import requests
 import torch
 from PIL import Image
-from sklearn.metrics import precision_recall_fscore_support
 
 
 def add_class(row):
@@ -52,10 +51,3 @@ def set_seeds(seed=42):
 
 def url_to_array(url):
     return np.array(Image.open(BytesIO(requests.get(url).content)).convert("RGB"))
-
-
-def batch_metric(batch):
-    labels = batch["label"]
-    preds = batch["prediction"]
-    precision, recall, f1, _ = precision_recall_fscore_support(labels, preds, average="weighted", zero_division=0)
-    return {"precision": [precision], "recall": [recall], "f1": [f1], "count": [1]}

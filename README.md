@@ -8,31 +8,23 @@
 In this guide, we will learn how to:
 - 💡 Create an end-to-end ML application that leverages data processing, batch inference, model training and online serving.
 - 📈 Scale out these workloads in a highly distributed manner -- all in Python.
-- 💻 Develop these workloads with the compute, dependencies, observability, debugger, etc.
+- 💻 Develop these workloads with the compute, dependencies, observability, fault tolerance, etc.
 - 🚀 Optimize all of these workloads with RayTurbo ([data](https://docs.anyscale.com/rayturbo/generated/rayturbo-data), [train](https://docs.anyscale.com/rayturbo/generated/rayturbo-train), [serve](https://docs.anyscale.com/rayturbo/generated/rayturbo-serve)) across performance, fault tolerance, scale and observability.
-- ✅ Productionize these workloads into batch jobs and online services.
+- ✅ Productionize these workloads into batch jobs and online services on Anyscale.
 
 ### Overview
 
 In this tutorial, we'll be implementing an application that leverages the following workloads:
 
-- **Data**:
-    - distributed data ingestion and preprocessing with [Ray Data](https://docs.ray.io/en/latest/data/data.html)
-    - batch inference(heterogenous workloads) to generate embeddings
-- **Train**:
-    - distributed model training with [Ray Train](https://docs.ray.io/en/latest/train/train.html) and PyTorch
-    - save model artifacts to a model registry
-- **Serve**:
-    - online serving with [Ray Serve](https://docs.ray.io/en/latest/serve/index.html)
-    - chain models / processes together and autoscale independently
-- **Dev → Prod**:
-    - create production batch [Jobs](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.)
-    - create production online [Services](https://docs.anyscale.com/platform/services/) with our trained model
+- Distributed **data ingestion**, **preprocessing** and **batch inference** with [Ray Data](https://docs.ray.io/en/latest/data/data.html).
+- Distributed **model training** with [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a **model registry** (MLOps).
+- **Online serving** with [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) and connecting service deployments that can autoscale based on traffic.
+- Create production batch [**Jobs**](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.) and production online [**Services**](https://docs.anyscale.com/platform/services/) with our trained model
 
 <img src="images/overview.png" width=900>
 
 
-### Workspaces
+### Development
 
 We're developing our application on Anyscale Workspaces, which enables us to develop without thinking about infrastructure, just like we would on a laptop. Workspaces come with:
 - **Development tools**: build with familiar tools like VS Code, Jupyter notebooks, terminal, [distributed debugger](https://docs.anyscale.com/platform/workspaces/workspaces-debugging/#distributed-debugger), [monitoring and debugging](https://docs.ray.io/en/latest/ray-observability/index.html), [unified log viewer](https://docs.anyscale.com/monitoring/accessing-logs/), etc.
@@ -43,13 +35,17 @@ We're developing our application on Anyscale Workspaces, which enables us to dev
 
 Learn more about Anyscale Workspaces through the [official documentation](https://docs.anyscale.com/platform/workspaces/).
 
-### Dev → Prod
+### Production
 
-Once we're done developing, it's extremely fast and easy to take our code, compute and dependencies (container image) and package it as a production grade [Job](https://docs.anyscale.com/platform/jobs/) or [Service](https://docs.anyscale.com/platform/services/). Especially since we've been developing in an environment (multinode cluster) that's almost identical to production!
+Once we're done developing, it's extremely fast and easy to take our code, compute and dependencies (container image) and package it as a production grade [Job](https://docs.anyscale.com/platform/jobs/) or [Service](https://docs.anyscale.com/platform/services/). Especially since we've been developing in an environment (multinode cluster) that's almost identical to production! We'll learn about the production features that Anyscale and RayTurbo offer on top of Ray throuhgout the tutorials.
 
 ### No infrastrucuture headaches
 
-It's hard enough for ML/AI developers to develop applications that work in production, they should'nt have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration*, *maximal productivity**. <details>
+It's hard enough for ML/AI developers to develop applications that work in production, they should'nt have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration**, **maximal productivity**.
+
+While these tutorials will be tailored for ML/AI developers, Anyscale also comes with [Enterprise Governance and Observability](https://www.anyscale.com/blog/enterprise-governance-observability) and an entire range of [admin capabilities](https://docs.anyscale.com/administration/overview) around access/account/resource management, cloud deployments, machine pools, etc. And if you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). But you may still want to move to Anyscale anyway 👇
+
+<details>
   <summary>Click <b>here</b> to see the infrastructure pains Anyscale removes</summary>
 
 **🚀 1. Fast Workload Launch** (No Cluster Setup Required)
@@ -82,4 +78,4 @@ It's hard enough for ML/AI developers to develop applications that work in produ
 
 </details>
 
-</div>
+<div></div>
