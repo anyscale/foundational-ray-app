@@ -29,5 +29,8 @@ class TorchPredictor:
         with open(os.path.join(artifacts_dir, "class_to_label.json"), "r") as fp:
             class_to_label = json.load(fp)
         preprocessor = Preprocessor(class_to_label=class_to_label)
-        model = ClassificationModel.load(args_fp=os.path.join(artifacts_dir, "args.json"), state_dict_fp=os.path.join(artifacts_dir, "model.pt"))
+        model = ClassificationModel.load(
+            args_fp=os.path.join(artifacts_dir, "args.json"),
+            state_dict_fp=os.path.join(artifacts_dir, "model.pt"),
+        )
         return cls(preprocessor=preprocessor, model=model)

@@ -94,7 +94,7 @@ class Doggos:
 
 
 # Model registry
-model_registry = "/mnt/user_storage/mlflow"
+model_registry = "/mnt/user_storage/mlflow/doggos"
 experiment_name = "doggos"
 mlflow.set_tracking_uri(f"file:{model_registry}")
 

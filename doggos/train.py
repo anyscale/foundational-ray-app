@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import tempfile
 
 import mlflow
@@ -11,7 +12,7 @@ from ray.train.torch import TorchTrainer
 
 from doggos.data import Preprocessor
 from doggos.model import ClassificationModel, collate_fn
-from doggos.utils import add_class, set_seeds
+from doggos.utils import add_class, delete_s3_objects, set_seeds
 
 
 def train_step(ds, batch_size, model, num_classes, loss_fn, optimizer):
@@ -108,7 +109,8 @@ def train_loop_per_worker(config):
 if __name__ == "__main__":
 
     # Train loop config
-    model_registry = "/mnt/user_storage/mlflow"
+    model_registry = "/mnt/user_storage/mlflow/doggos"
+    os.path.isdir(model_registry) and shutil.rmtree(model_registry)  # clean up"
     os.makedirs(model_registry, exist_ok=True)
     experiment_name = "doggos"
     train_loop_config = {
@@ -152,6 +154,22 @@ if __name__ == "__main__":
     train_ds = preprocessor.transform(ds=train_ds)
     val_ds = preprocessor.transform(ds=val_ds)
 
+    # Write processed data to cloud storage
+    preprocessed_data_path = os.path.join(
+        os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
+        os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
+        "doggos/preprocessed_data",
+    )
+    delete_s3_objects(s3_path=preprocessed_data_path)
+    preprocessed_train_path = os.path.join(preprocessed_data_path, "preprocessed_train")
+    preprocessed_val_path = os.path.join(preprocessed_data_path, "preprocessed_val")
+    train_ds.write_parquet(preprocessed_train_path)
+    val_ds.write_parquet(preprocessed_val_path)
+
+    # Load preprocessed datasets
+    preprocessed_train_ds = ray.data.read_parquet(preprocessed_train_path)
+    preprocessed_val_ds = ray.data.read_parquet(preprocessed_val_path)
+
     # Trainer
     train_loop_config["class_to_label"] = preprocessor.class_to_label
     train_loop_config["num_classes"] = len(preprocessor.class_to_label)
@@ -159,7 +177,7 @@ if __name__ == "__main__":
         train_loop_per_worker=train_loop_per_worker,
         train_loop_config=train_loop_config,
         scaling_config=scaling_config,
-        datasets={"train": train_ds, "val": val_ds},
+        datasets={"train": preprocessed_train_ds, "val": preprocessed_val_ds},
     )
 
     # Train

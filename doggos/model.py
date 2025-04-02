@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 
 import numpy as np
@@ -56,33 +55,34 @@ class ClassificationModel(torch.nn.Module):
 
     @torch.inference_mode()
     def predict(self, batch):
-        self.eval()
         z = self(batch)
         y_pred = torch.argmax(z, dim=1).cpu().numpy()
         return y_pred
 
     @torch.inference_mode()
     def predict_probabilities(self, batch):
-        self.eval()
         z = self(batch)
         y_probs = F.softmax(z, dim=1).cpu().numpy()
         return y_probs
 
     def save(self, dp):
+        Path(dp).mkdir(parents=True, exist_ok=True)
         with open(Path(dp, "args.json"), "w") as fp:
-            contents = {
-                "embedding_dim": self.embedding_dim,
-                "hidden_dim": self.hidden_dim,
-                "dropout_p": self.dropout_p,
-                "num_classes": self.num_classes,
-            }
-            json.dump(contents, fp, indent=4, sort_keys=False)
-        torch.save(self.state_dict(), os.path.join(dp, "model.pt"))
+            json.dump(
+                {
+                    "embedding_dim": self.embedding_dim,
+                    "hidden_dim": self.hidden_dim,
+                    "dropout_p": self.dropout_p,
+                    "num_classes": self.num_classes,
+                },
+                fp,
+                indent=4,
+            )
+        torch.save(self.state_dict(), Path(dp, "model.pt"))
 
     @classmethod
     def load(cls, args_fp, state_dict_fp, device="cpu"):
         with open(args_fp, "r") as fp:
-            kwargs = json.load(fp=fp)
-        model = cls(**kwargs)
-        model.load_state_dict(torch.load(state_dict_fp, map_location=torch.device(device)))
+            model = cls(**json.load(fp))
+        model.load_state_dict(torch.load(state_dict_fp, map_location=device))
         return model
