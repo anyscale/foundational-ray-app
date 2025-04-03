@@ -15,7 +15,7 @@ from doggos.model import ClassificationModel, collate_fn
 from doggos.utils import add_class, delete_s3_objects, set_seeds
 
 
-def train_step(ds, batch_size, model, num_classes, loss_fn, optimizer):
+def train_epoch(ds, batch_size, model, num_classes, loss_fn, optimizer):
     model.train()
     loss = 0.0
     ds_generator = ds.iter_torch_batches(batch_size=batch_size, collate_fn=collate_fn)
@@ -30,7 +30,7 @@ def train_step(ds, batch_size, model, num_classes, loss_fn, optimizer):
     return loss
 
 
-def eval_step(ds, batch_size, model, num_classes, loss_fn):
+def eval_epoch(ds, batch_size, model, num_classes, loss_fn):
     model.eval()
     loss = 0.0
     y_trues, y_preds = [], []
@@ -85,8 +85,8 @@ def train_loop_per_worker(config):
     best_val_loss = float("inf")
     for epoch in range(num_epochs):
         # Steps
-        train_loss = train_step(train_ds, batch_size, model, num_classes, loss_fn, optimizer)
-        val_loss, _, _ = eval_step(val_ds, batch_size, model, num_classes, loss_fn)
+        train_loss = train_epoch(train_ds, batch_size, model, num_classes, loss_fn, optimizer)
+        val_loss, _, _ = eval_epoch(val_ds, batch_size, model, num_classes, loss_fn)
         scheduler.step(val_loss)
 
         # Checkpoint

@@ -6,7 +6,7 @@ from doggos.embed import EmbeddingGenerator
 class Preprocessor:
     """Preprocessor class."""
 
-    def __init__(self, class_to_label={}):
+    def __init__(self, class_to_label=None):
         self.class_to_label = class_to_label or {}  # mutable defaults
         self.label_to_class = {v: k for k, v in self.class_to_label.items()}
 
