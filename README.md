@@ -9,7 +9,7 @@ In this guide, we will learn how to:
 - 💡 Create an end-to-end ML application that leverages data processing, batch inference, model training and online serving.
 - 📈 Scale out these workloads in a highly distributed manner -- all in Python.
 - 💻 Develop these workloads with the compute, dependencies, observability, fault tolerance, etc.
-- 🚀 Optimize all of these workloads with RayTurbo ([data](https://docs.anyscale.com/rayturbo/generated/rayturbo-data), [train](https://docs.anyscale.com/rayturbo/generated/rayturbo-train), [serve](https://docs.anyscale.com/rayturbo/generated/rayturbo-serve)) across performance, fault tolerance, scale and observability.
+- 🚀 Optimize all of these workloads with RayTurbo ([data](https://docs.anyscale.com/rayturbo/rayturbo-data), [train](https://docs.anyscale.com/rayturbo/rayturbo-train), [serve](https://docs.anyscale.com/rayturbo/rayturbo-serve)) across performance, fault tolerance, scale and observability.
 - ✅ Productionize these workloads into batch jobs and online services on Anyscale.
 
 ### Overview
