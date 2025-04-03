@@ -103,7 +103,7 @@ if __name__ == "__main__":
     embeddings_path = os.path.join(
         os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
         os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
-        "doggos/embeddings",
+        "doggos/image-embeddings",
     )
     delete_s3_objects(s3_path=embeddings_path)
     embeddings_ds.write_parquet(embeddings_path)

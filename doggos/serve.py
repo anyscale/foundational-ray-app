@@ -108,7 +108,7 @@ artifacts_dir = urlparse(best_run.artifact_uri).path
 embeddings_path = os.path.join(
     os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
     os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
-    "doggos/embeddings",
+    "doggos/image-embeddings",
 )
 
 # Define app
