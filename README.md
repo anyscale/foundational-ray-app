@@ -53,7 +53,7 @@ Once we're done developing, it's extremely fast and easy to take our code, compu
 Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anyscale [CLI](https://docs.anyscale.com/reference/quickstart-cli) or [SDK](https://docs.anyscale.com/reference/quickstart-sdk) to deploy [highly available services](https://docs.anyscale.com/platform/services) and run [reliable batch jobs](https://docs.anyscale.com/platform/jobs). Given we've been developing in an environment that's almost identical to production (multinode cluster), this should drastically speed up our velocity. We'll also learn about proprietary RayTurbo features to optimize our workloads for performance, fault tolerance, scale and observability.
 
 
-### No infrastrucuture headaches
+### No infrastructure headaches
 
 It's hard enough for ML/AI developers to develop applications that work in production, they should'nt have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration**, **maximal productivity**.
 
