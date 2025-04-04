@@ -31,12 +31,18 @@ As shown in the image above, we will build a semantic search application. To do 
 
 ### Development
 
-We're developing our application on Anyscale Workspaces, which enables us to develop without thinking about infrastructure, just like we would on a laptop. Workspaces come with:
-- **Development tools**: build with familiar tools like VS Code, Jupyter notebooks, terminal, [distributed debugger](https://docs.anyscale.com/platform/workspaces/workspaces-debugging/#distributed-debugger), [monitoring and debugging](https://docs.ray.io/en/latest/ray-observability/index.html), [unified log viewer](https://docs.anyscale.com/monitoring/accessing-logs/), etc.
+We're developing our application on [Anyscale Workspaces](https://docs.anyscale.com/platform/workspaces/), which enables us to develop without thinking about infrastructure, just like we would on a laptop. Workspaces come with:
+<!-- - **Development tools**: build with familiar tools like VS Code, Jupyter notebooks, terminal, [distributed debugger](https://docs.anyscale.com/platform/workspaces/workspaces-debugging/#distributed-debugger), [monitoring and debugging](https://docs.ray.io/en/latest/ray-observability/index.html), [unified log viewer](https://docs.anyscale.com/monitoring/accessing-logs/), etc.
 - **Compute**: define the compute in our [cluster](https://docs.ray.io/en/latest/cluster/key-concepts.html). This can be from your clouds (multicloud) or our Hosted Anyscale experience.
     - *Head node*: manages the cluster, distributes tasks, and hosts development tools.
     - *Worker nodes*: machines that execute work orchestrated by the head node and can scale up and back down to 0.
-- **Dependency management**: define the environment and it's dependendies your workloads neeed.
+- **Dependency management**: define the environment and it's dependendies your workloads neeed. -->
+
+- **Development tools**: Spin up a remote session from your local IDE (cursor, vscode, etc.) and start coding, using the same tools you love but with the power of Anyscale's compute.
+- **Dependencies**: Continue to install dependencies using familiar tools like pip. Anyscale will ensure dependencies are being propagated to your cluster.
+- **Compute**: Leverage any reserved instance capacity, spot instance from any compute provider of your choice by deploying Anyscale into your account. Alternatively, you can use the Anyscale cloud for a full serverless experience.
+  - Under the hood, a cluster will be spun up and smartly managed by Anyscale.
+- **Debugging**: Leverage a [distributed debugger](https://docs.anyscale.com/platform/workspaces/workspaces-debugging/#distributed-debugger) to get the same VSCode-like debugging experience.
 
 Learn more about Anyscale Workspaces through the [official documentation](https://docs.anyscale.com/platform/workspaces/).
 
