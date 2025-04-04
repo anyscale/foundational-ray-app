@@ -55,9 +55,16 @@ Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anysca
 
 ### No infrastructure headaches
 
-It's hard enough for ML/AI developers to develop applications that work in production, they should'nt have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration**, **maximal productivity**.
+<!-- It's hard enough for ML/AI developers to develop applications that work in production, they shouldn't have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration**, **maximal productivity**.
 
-While these tutorials will be tailored for ML/AI developers, Anyscale also comes with [Enterprise Governance and Observability](https://www.anyscale.com/blog/enterprise-governance-observability) and an entire range of [admin capabilities](https://docs.anyscale.com/administration/overview) around access/account/resource management, cloud deployments, machine pools, etc. And if you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). But you may still want to move to Anyscale anyway 👇
+While these tutorials will be tailored for ML/AI developers, Anyscale also comes with [enterprise governance and observability](https://www.anyscale.com/blog/enterprise-governance-observability) and an entire range of [admin capabilities](https://docs.anyscale.com/administration/overview) around access/account/resource management, cloud deployments, machine pools, etc. 
+And if you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). But you may still want to move to Anyscale anyway 👇 -->
+
+
+Abstract away infrastructure from your ML/AI developers so they can focus on their core ML development. You can additionally better manage compute resources and costs with our [enterprise governance and observability](https://www.anyscale.com/blog/enterprise-governance-observability) and [admin capabilities](https://docs.anyscale.com/administration/overview) so you can set [resource quotas](https://docs.anyscale.com/reference/resource-quotas/), set [priorities for different workloads](https://docs.anyscale.com/administration/cloud-deployment/global-resource-scheduler) and gain [observability of your utilization across your entire compute fleet](https://docs.anyscale.com/administration/resource-management/telescope-dashboard).
+If you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). 
+
+Below is a list of infrastructure headaches Anyscale removes so you can focus on your ML development.👇
 
 <details>
   <summary>Click <b>here</b> to see the infrastructure pains Anyscale removes</summary>
