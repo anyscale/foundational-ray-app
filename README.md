@@ -47,8 +47,11 @@ We're developing our application on [Anyscale Workspaces](https://docs.anyscale.
 Learn more about Anyscale Workspaces through the [official documentation](https://docs.anyscale.com/platform/workspaces/).
 
 ### Production
+<!-- 
+Once we're done developing, it's extremely fast and easy to take our code, compute and dependencies (container image) and package it as a production grade [Job](https://docs.anyscale.com/platform/jobs/) or [Service](https://docs.anyscale.com/platform/services/). Especially since we've been developing in an environment (multinode cluster) that's almost identical to production! We'll learn about the production features that Anyscale and RayTurbo offer on top of Ray throuhgout the tutorials. -->
 
-Once we're done developing, it's extremely fast and easy to take our code, compute and dependencies (container image) and package it as a production grade [Job](https://docs.anyscale.com/platform/jobs/) or [Service](https://docs.anyscale.com/platform/services/). Especially since we've been developing in an environment (multinode cluster) that's almost identical to production! We'll learn about the production features that Anyscale and RayTurbo offer on top of Ray throuhgout the tutorials.
+Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anyscale [CLI](https://docs.anyscale.com/reference/quickstart-cli) or [SDK](https://docs.anyscale.com/reference/quickstart-sdk) to deploy [highly available services](https://docs.anyscale.com/platform/services) and run [reliable batch jobs](https://docs.anyscale.com/platform/jobs). Given we've been developing in an environment that's almost identical to production (multinode cluster), this should drastically speed up our velocity. We'll also learn about proprietary RayTurbo features to optimize our workloads for performance, fault tolerance, scale and observability.
+
 
 ### No infrastrucuture headaches
 
