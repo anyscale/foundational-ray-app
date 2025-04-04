@@ -22,7 +22,12 @@ In this tutorial, we'll be implementing an application that leverages the follow
 - Create production batch [**Jobs**](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.) and production online [**Services**](https://docs.anyscale.com/platform/services/) with our trained model
 
 <img src="images/overview.png" width=900>
-
+<!-- I think talking through the diagram is nice given there are quite a few moving parts here. -->
+As shown in the image above, we will build a semantic search application. To do so, we will:
+1. Ingest an image dataset of animals (mainly dogs)
+2. Preprocess the data, embed the images and save the embeddings to a vector database
+3. Preprocess the data to train an image classification model
+4. Serve both the semantic search application by composing both the image classification model and vector search
 
 ### Development
 
