@@ -16,28 +16,16 @@ In this guide, we will learn how to:
 
 In this tutorial, we'll be implementing an application that leverages the following workloads:
 
-- Distributed **data ingestion**, **preprocessing** and **batch inference** with [Ray Data](https://docs.ray.io/en/latest/data/data.html).
-- Distributed **model training** with [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a **model registry** (MLOps).
-- **Online serving** with [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) and connecting service deployments that can autoscale based on traffic.
-- Create production batch [**Jobs**](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.) and production online [**Services**](https://docs.anyscale.com/platform/services/) with our trained model
+- Ingest and preprocess data at scale using [Ray Data](https://docs.ray.io/en/latest/data/data.html) to generate embeddings (**batch inference**) for an image dataset (e.g., different dog breeds) and store them.
+- Preprocess the same data to train (**distributed training**) an image classifier using [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a model registry (**MLOps**)
+- Serve (**online serving**) a semantic search application using [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) that uses model predictions to filter and retrieve the most relevant images based on input queries.
+- Create production batch [**Jobs**](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.) and production online [**Services**](https://docs.anyscale.com/platform/services/) that can scale.
 
 <img src="images/overview.png" width=900>
-<!-- I think talking through the diagram is nice given there are quite a few moving parts here. -->
-As shown in the image above, we will build a semantic search application. To do so, we will:
-1. Ingest an image dataset of animals (mainly dogs)
-2. Preprocess the data, embed the images and save the embeddings to a vector database
-3. Preprocess the data to train an image classification model
-4. Serve both the semantic search application by composing both the image classification model and vector search
 
 ### Development
 
 We're developing our application on [Anyscale Workspaces](https://docs.anyscale.com/platform/workspaces/), which enables us to develop without thinking about infrastructure, just like we would on a laptop. Workspaces come with:
-<!-- - **Development tools**: build with familiar tools like VS Code, Jupyter notebooks, terminal, [distributed debugger](https://docs.anyscale.com/platform/workspaces/workspaces-debugging/#distributed-debugger), [monitoring and debugging](https://docs.ray.io/en/latest/ray-observability/index.html), [unified log viewer](https://docs.anyscale.com/monitoring/accessing-logs/), etc.
-- **Compute**: define the compute in our [cluster](https://docs.ray.io/en/latest/cluster/key-concepts.html). This can be from your clouds (multicloud) or our Hosted Anyscale experience.
-    - *Head node*: manages the cluster, distributes tasks, and hosts development tools.
-    - *Worker nodes*: machines that execute work orchestrated by the head node and can scale up and back down to 0.
-- **Dependency management**: define the environment and it's dependendies your workloads neeed. -->
-
 - **Development tools**: Spin up a remote session from your local IDE (cursor, vscode, etc.) and start coding, using the same tools you love but with the power of Anyscale's compute.
 - **Dependencies**: Continue to install dependencies using familiar tools like pip. Anyscale will ensure dependencies are being propagated to your cluster.
 - **Compute**: Leverage any reserved instance capacity, spot instance from any compute provider of your choice by deploying Anyscale into your account. Alternatively, you can use the Anyscale cloud for a full serverless experience.
@@ -47,20 +35,10 @@ We're developing our application on [Anyscale Workspaces](https://docs.anyscale.
 Learn more about Anyscale Workspaces through the [official documentation](https://docs.anyscale.com/platform/workspaces/).
 
 ### Production
-<!-- 
-Once we're done developing, it's extremely fast and easy to take our code, compute and dependencies (container image) and package it as a production grade [Job](https://docs.anyscale.com/platform/jobs/) or [Service](https://docs.anyscale.com/platform/services/). Especially since we've been developing in an environment (multinode cluster) that's almost identical to production! We'll learn about the production features that Anyscale and RayTurbo offer on top of Ray throuhgout the tutorials. -->
-
-Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anyscale [CLI](https://docs.anyscale.com/reference/quickstart-cli) or [SDK](https://docs.anyscale.com/reference/quickstart-sdk) to deploy [highly available services](https://docs.anyscale.com/platform/services) and run [reliable batch jobs](https://docs.anyscale.com/platform/jobs). Given we've been developing in an environment that's almost identical to production (multinode cluster), this should drastically speed up our velocity. We'll also learn about proprietary RayTurbo features to optimize our workloads for performance, fault tolerance, scale and observability.
+Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anyscale [CLI](https://docs.anyscale.com/reference/quickstart-cli) or [SDK](https://docs.anyscale.com/reference/quickstart-sdk) to deploy [highly available services](https://docs.anyscale.com/platform/services) and run [reliable batch jobs](https://docs.anyscale.com/platform/jobs). Given we've been developing in an environment that's almost identical to production (multinode cluster), this should drastically speed up our dev → prod velocity. We'll also learn about proprietary RayTurbo features to optimize our workloads for performance, fault tolerance, scale and observability.
 
 
 ### No infrastructure headaches
-
-<!-- It's hard enough for ML/AI developers to develop applications that work in production, they shouldn't have to deal with infrastructure pains as well. The ability to define a cluster with heterogenous instances and use them for any workload within seconds is the kind of experience we deserve. Luckily, Anyscale’s philosophy is **minimal configuration**, **maximal productivity**.
-
-While these tutorials will be tailored for ML/AI developers, Anyscale also comes with [enterprise governance and observability](https://www.anyscale.com/blog/enterprise-governance-observability) and an entire range of [admin capabilities](https://docs.anyscale.com/administration/overview) around access/account/resource management, cloud deployments, machine pools, etc. 
-And if you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). But you may still want to move to Anyscale anyway 👇 -->
-
-
 Abstract away infrastructure from your ML/AI developers so they can focus on their core ML development. You can additionally better manage compute resources and costs with our [enterprise governance and observability](https://www.anyscale.com/blog/enterprise-governance-observability) and [admin capabilities](https://docs.anyscale.com/administration/overview) so you can set [resource quotas](https://docs.anyscale.com/reference/resource-quotas/), set [priorities for different workloads](https://docs.anyscale.com/administration/cloud-deployment/global-resource-scheduler) and gain [observability of your utilization across your entire compute fleet](https://docs.anyscale.com/administration/resource-management/telescope-dashboard).
 If you're already on a kubernetes cloud (EKS, GKE, etc.), then you can still leverage the proprietary optimizations from RayTubo you'll see in action in these tutorials through our [Anyscale K8s Operator](https://docs.anyscale.com/administration/cloud-deployment/kubernetes/). 
 
