@@ -127,11 +127,11 @@ if __name__ == "__main__":
     }
 
     # Scaling config
-    num_workers = 4
+    num_workers = 2
     scaling_config = ray.train.ScalingConfig(
         num_workers=num_workers,
         use_gpu=True,
-        resources_per_worker={"CPU": 8, "GPU": 1},
+        resources_per_worker={"CPU": 8, "GPU": 2},
     )
 
     # Datasets
