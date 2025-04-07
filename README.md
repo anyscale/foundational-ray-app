@@ -11,7 +11,7 @@
 In this tutorial, we'll be implementing an application that leverages the following workloads:
 
 - [**`01-Batch-Inference.ipynb`**](notebooks/01-Batch-Inference.ipynb): ingest and preprocess data at scale using [Ray Data](https://docs.ray.io/en/latest/data/data.html) to generate embeddings for an image dataset (e.g., different dog breeds) and store them.
-- [**`02-Distributed-Training.ipynb`**](notebooks/02-Distributed-Training.ipynb): reprocess the same data to train an image classifier using [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a model registry (MLOps)
+- [**`02-Distributed-Training.ipynb`**](notebooks/02-Distributed-Training.ipynb): reprocess the same data to train an image classifier using [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a model registry (MLOps).
 - [**`03-Online-Serving.ipynb`**](notebooks/03-Online-Serving.ipynb): serve a semantic search application using [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) that uses model predictions to filter and retrieve the most relevant images based on input queries.
 - Create production batch [**Jobs**](https://docs.anyscale.com/platform/jobs/) for offline workloads (embedding generation, model training, etc.) and production online [**Services**](https://docs.anyscale.com/platform/services/) that can scale.
 
