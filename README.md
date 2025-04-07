@@ -1,4 +1,4 @@
-# Foundational Ray Application
+# Image Semantic Search and Classification
 
 <div align="left">
 <a target="_blank" href="https://console.anyscale.com/"><img src="https://img.shields.io/badge/🚀 Run_on-Anyscale-9hf"></a>&nbsp;
