@@ -105,11 +105,7 @@ sorted_runs = mlflow.search_runs(
 )
 best_run = sorted_runs.iloc[0]
 artifacts_dir = urlparse(best_run.artifact_uri).path
-embeddings_path = os.path.join(
-    os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
-    os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
-    "doggos/image-embeddings",
-)
+embeddings_path = os.path.join("/mnt/user_storage", "doggos/embeddings")
 
 # Define app
 app = Doggos.bind(

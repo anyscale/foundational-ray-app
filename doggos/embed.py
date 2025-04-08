@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -8,7 +9,7 @@ from PIL import Image
 from scipy.spatial.distance import cdist
 from transformers import CLIPModel, CLIPProcessor
 
-from doggos.utils import add_class, delete_s3_objects, url_to_array
+from doggos.utils import add_class, url_to_array
 
 
 class EmbeddingGenerator(object):
@@ -100,10 +101,7 @@ if __name__ == "__main__":
     embeddings_ds = embeddings_ds.drop_columns(["image"])  # remove image column
 
     # Save to artifact storage
-    embeddings_path = os.path.join(
-        os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
-        os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
-        "doggos/image-embeddings",
-    )
-    delete_s3_objects(s3_path=embeddings_path)
+    embeddings_path = os.path.join("/mnt/user_storage", "doggos/embeddings")
+    if os.path.exists(embeddings_path):
+        shutil.rmtree(embeddings_path)  # clean up
     embeddings_ds.write_parquet(embeddings_path)

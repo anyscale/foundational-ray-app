@@ -12,7 +12,7 @@ from ray.train.torch import TorchTrainer
 
 from doggos.data import Preprocessor
 from doggos.model import ClassificationModel, collate_fn
-from doggos.utils import add_class, delete_s3_objects, set_seeds
+from doggos.utils import add_class, set_seeds
 
 
 def train_epoch(ds, batch_size, model, num_classes, loss_fn, optimizer):
@@ -110,7 +110,8 @@ if __name__ == "__main__":
 
     # Train loop config
     model_registry = "/mnt/user_storage/mlflow/doggos"
-    os.path.isdir(model_registry) and shutil.rmtree(model_registry)  # clean up"
+    if os.path.isdir(model_registry):
+        shutil.rmtree(model_registry)  # clean up
     os.makedirs(model_registry, exist_ok=True)
     experiment_name = "doggos"
     train_loop_config = {
@@ -155,12 +156,9 @@ if __name__ == "__main__":
     val_ds = preprocessor.transform(ds=val_ds)
 
     # Write processed data to cloud storage
-    preprocessed_data_path = os.path.join(
-        os.getenv("ANYSCALE_ARTIFACT_STORAGE", ""),
-        os.getenv("ANYSCALE_USERNAME", "").replace(" ", "_"),
-        "doggos/preprocessed_data",
-    )
-    delete_s3_objects(s3_path=preprocessed_data_path)
+    preprocessed_data_path = os.path.join("/mnt/user_storage", "doggos/preprocessed_data")
+    if os.path.exists(preprocessed_data_path):
+        shutil.rmtree(preprocessed_data_path)  # clean up
     preprocessed_train_path = os.path.join(preprocessed_data_path, "preprocessed_train")
     preprocessed_val_path = os.path.join(preprocessed_data_path, "preprocessed_val")
     train_ds.write_parquet(preprocessed_train_path)

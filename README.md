@@ -8,7 +8,7 @@
 
 ### Overview
 
-In this tutorial, we'll be implementing an application that leverages the following workloads:
+In this tutorial, we'll be implementing an image semantic search application that leverages batch inference, distributed training and online serving at scale.
 
 - [**`01-Batch-Inference.ipynb`**](notebooks/01-Batch-Inference.ipynb): ingest and preprocess data at scale using [Ray Data](https://docs.ray.io/en/latest/data/data.html) to generate embeddings for an image dataset (e.g., different dog breeds) and store them.
 - [**`02-Distributed-Training.ipynb`**](notebooks/02-Distributed-Training.ipynb): reprocess the same data to train an image classifier using [Ray Train](https://docs.ray.io/en/latest/train/train.html) and saving model artifacts to a model registry (MLOps).
@@ -31,6 +31,8 @@ Learn more about Anyscale Workspaces through the [official documentation](https:
 <div align="center">
   <img src="https://raw.githubusercontent.com/anyscale/foundational-ray-app/refs/heads/main/images/compute.png" width=600>
 </div>
+
+**Note**: If you're on [Anyscale](https://console.anyscale.com/), you can run this entire tutorial for free (all dependencies are setup and the necessary compute will autoscale). Otherwise be sure to install the dependencies from the [`containerfile`](containerfile) and provision the appropriate GPU resources.
 
 ### Production
 Seamlessly integrate with your existing CI/CD pipelines by leveraging the Anyscale [CLI](https://docs.anyscale.com/reference/quickstart-cli) or [SDK](https://docs.anyscale.com/reference/quickstart-sdk) to deploy [highly available services](https://docs.anyscale.com/platform/services) and run [reliable batch jobs](https://docs.anyscale.com/platform/jobs). Given we've been developing in an environment that's almost identical to production (multinode cluster), this should drastically speed up our dev → prod velocity. We'll also learn about proprietary RayTurbo features to optimize our workloads for performance, fault tolerance, scale and observability.
