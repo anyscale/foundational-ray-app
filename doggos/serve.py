@@ -24,7 +24,7 @@ api = FastAPI(
     ray_actor_options={
         "num_cpus": 2,
         "num_gpus": 1,
-        "accelerator_type": "A10G",
+        "accelerator_type": "L4",
     },
 )
 class ClassPredictor:
@@ -58,7 +58,7 @@ class ClassPredictor:
     ray_actor_options={
         "num_cpus": 2,
         "num_gpus": 1,
-        "accelerator_type": "A10G",
+        "accelerator_type": "L4",
     },
 )
 class EmbeddingSimilarity:

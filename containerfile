@@ -11,6 +11,6 @@ FROM anyscale/ray:2.44.1-slim-py312-cu123
 # Add other build commands here.
 # RUN echo "Testing Ray import..." && python -c "import ray"
 
-RUN python3 -m pip install --no-cache-dir --upgrade \
-    "matplotlib==3.10.0" "torch==2.5.1" "transformers==4.47.1" "scikit-learn==1.6.0" "mlflow==2.19.0" "ipywidgets" \
-    "black==25.1.0" "isort==6.0.0" "flake8-pyproject==1.2.3" "pre-commit==4.1.0"
+RUN python3 -m pip install --no-cache-dir \
+    "matplotlib==3.10.0" "torch==2.7.0" "transformers==4.52.3" \
+    "scikit-learn==1.6.0" "mlflow==2.19.0" "ipywidgets==8.1.3"
